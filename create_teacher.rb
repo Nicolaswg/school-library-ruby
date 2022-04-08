@@ -5,7 +5,6 @@ def create_teacher(id)
   name = gets.chomp
   print 'Specialization '
   specialization = gets.chomp
-  id = Random.rand(1...100)
   teacher = Teacher.new(id, age, specialization, name)
   @teachers << teacher
   puts 'Teacher created successfully'

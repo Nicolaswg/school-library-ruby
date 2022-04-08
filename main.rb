@@ -21,10 +21,10 @@ class App
     case option
     when '1'
       create_student(@id)
-			@id = Random.rand(1...100)
+      @id = Random.rand(1...100)
     when '2'
       create_teacher(@id)
-			@id = Random.rand(1...100)
+      @id = Random.rand(1...100)
     else
       puts 'Invalid option'
     end
