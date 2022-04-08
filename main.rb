@@ -124,10 +124,10 @@ class App
     case option
     when 1
       select_person_rentals('student', @students)
-      @index_s = gets.chomp.to_i
+      @index_s = gets.chomp
     when 2
       select_person_rentals('teacher', @teachers)
-      @index_t = gets.chomp.to_i
+      @index_t = gets.chomp
     end
   end
 
