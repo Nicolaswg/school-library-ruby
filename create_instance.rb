@@ -33,4 +33,14 @@ class Create
 		puts 'Teacher created successfully'
 		teacher
 	end
+
+	def create_book
+    print 'Title: '
+    title = gets.chomp
+    print 'Author: '
+    author = gets.chomp
+    book = Book.new(title, author)
+    puts 'Book created successfully'
+		book
+  end
 end

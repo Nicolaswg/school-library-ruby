@@ -3,7 +3,7 @@ require_relative './teacher'
 require_relative './rental'
 require_relative './book'
 require_relative './menu_template'
-require_relative './create_people'
+require_relative './create_instance'
 require_relative './listing'
 
 
@@ -28,16 +28,6 @@ class App
     else
       puts 'Invalid option'
     end
-  end
-
-  def book_menu
-    print 'Title: '
-    title = gets.chomp
-    print 'Author: '
-    author = gets.chomp
-    book = Book.new(title, author)
-    @books << book
-    puts 'Book created successfully'
   end
 
   def rental_id_menu
@@ -72,7 +62,7 @@ class App
     when '3'
       create_people
     when '4'
-      book_menu
+      @books << @create.create_book
     when '5'
       rental_menu
     end
