@@ -23,16 +23,18 @@ class Listing
     when '1'
       if students.empty?
         puts 'No student added'
+				return nil
       else
         students.each_with_index { |student, index| puts "#{index}-) [Students] Name: #{student.name}, ID: #{student.id}, Age: #{student.age}" }
       end
     when '2'
       if teachers.empty?
         puts 'No teacher added'
+				return nil
       else
         teachers.each_with_index { |teacher, index| puts "#{index}-) [Teachers] Name: #{teacher.name}, ID: #{teacher.id}, Age: #{teacher.age}" }
       end
     end
-    people_option
+    people_option.to_i
   end
 end

@@ -43,11 +43,14 @@ class App
     @listing.list_books(@books)
     book_index = gets.chomp.to_i
     puts 'How is creating the rental?'
-    @listing.people_list_menu(@students, @teachers)
+    rental_checker = @listing.people_list_menu(@students, @teachers)
+		if rental_checker == nil
+			return nil
+		end
     index = gets.chomp.to_i
     print 'Date format [year/month/day] '
     date = gets.chomp
-
+		
     case rental_checker
     when 1
       Rental.new(date, @books[book_index], @students[index])
