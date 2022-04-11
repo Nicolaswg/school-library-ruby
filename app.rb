@@ -15,7 +15,10 @@ class App
 		@create = Create.new
   end
 
-  def create_people(option)
+  def create_people
+		puts 'Do you want to create a student (1) or a teacher (2) [Input the number]:'
+    option = gets.chomp
+
     case option
     when '1'
 			@students << @create.create_student
@@ -24,12 +27,6 @@ class App
     else
       puts 'Invalid option'
     end
-  end
-
-  def people_menu
-    puts 'Do you want to create a student (1) or a teacher (2) [Input the number]:'
-    people_option = gets.chomp
-    create_people(people_option)
   end
 
   def book_menu
@@ -92,7 +89,7 @@ class App
   def create_option(option)
     case option
     when '3'
-      people_menu
+      create_people
     when '4'
       book_menu
     when '5'
