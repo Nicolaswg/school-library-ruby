@@ -1,8 +1,4 @@
-require_relative './student'
-require_relative './teacher'
 require_relative './rental'
-require_relative './book'
-require_relative './menu_template'
 require_relative './create_instance'
 require_relative './listing'
 
@@ -42,6 +38,27 @@ class App
     end
   end
 
+  def rental_menu
+    puts "Select a book by it's starting number of the list"
+    @listing.list_books(@books)
+    book_index = gets.chomp.to_i
+    puts 'How is creating the rental?'
+    @listing.people_list_menu(@students, @teachers)
+    index = gets.chomp.to_i
+    print 'Date format [year/month/day] '
+    date = gets.chomp
+
+    case rental_checker
+    when 1
+      Rental.new(date, @books[book_index], @students[index])
+    when 2
+      Rental.new(date, @books[book_index], @teachers[index])
+    else
+      puts 'Invalid option'
+    end
+    puts 'Rental created succesfully'
+  end
+
   def list_option(option)
     case option
     when '1'
@@ -68,6 +85,8 @@ class App
     end
   end
 
+  private :create_option, :list_option, :create_people
+
   def menu_options(option)
     case option
     when '1', '2', '6'
@@ -77,41 +96,5 @@ class App
     when '7'
       puts 'Exit'
     end
-  end
-
-  def select_person_rentals(string, arr)
-    puts "select a #{string} from the following list by number [not id]"
-    arr.each_with_index { |item, index| puts "#{index}-) Name: \"#{item.name}\" , Age: #{item.age}" }
-  end
-
-  def rental_check(option)
-    case option
-    when 1
-      select_person_rentals('student', @students)
-    when 2
-      select_person_rentals('teacher', @teachers)
-    end
-  end
-
-  def rental_menu
-    puts "Select a book by it's starting number of the list"
-    @listing.list_books(@books)
-    book_index = gets.chomp.to_i
-    puts 'How is creating the rental? student(1) or teacher(2)'
-    rental_checker = gets.chomp.to_i
-    rental_check(rental_checker)
-    index = gets.chomp.to_i
-    print 'Date format [year/month/day] '
-    date = gets.chomp
-
-    case rental_checker
-    when 1
-      Rental.new(date, @books[book_index], @students[index])
-    when 2
-      Rental.new(date, @books[book_index], @teachers[index])
-    else
-      puts 'Invalid option'
-    end
-    puts 'Rental created succesfully'
   end
 end

@@ -24,14 +24,15 @@ class Listing
       if students.empty?
         puts 'No student added'
       else
-        students.each { |student| puts "[Students] Name: #{student.name}, ID: #{student.id}, Age: #{student.age}" }
+        students.each_with_index { |student, index| puts "#{index}-) [Students] Name: #{student.name}, ID: #{student.id}, Age: #{student.age}" }
       end
     when '2'
       if teachers.empty?
         puts 'No teacher added'
       else
-        teachers.each { |teacher| puts "[Teachers] Name: #{teacher.name}, ID: #{teacher.id}, Age: #{teacher.age}" }
+        teachers.each_with_index { |teacher, index| puts "#{index}-) [Teachers] Name: #{teacher.name}, ID: #{teacher.id}, Age: #{teacher.age}" }
       end
     end
+    people_option
   end
 end
