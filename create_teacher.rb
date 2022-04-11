@@ -1,4 +1,5 @@
-def create_teacher(id)
+def create_teacher
+  id = Random.rand(1...100)
   print 'Age: '
   age = gets.chomp
   print 'Name: '

@@ -13,7 +13,6 @@ class App
     @students = []
     @teachers = []
     @books = []
-    @id = Random.rand(1...100)
     @index_s = 0
     @index_t = 0
   end
@@ -21,11 +20,9 @@ class App
   def create_people(option)
     case option
     when '1'
-      create_student(@id)
-      @id = Random.rand(1...100)
+      create_student
     when '2'
-      create_teacher(@id)
-      @id = Random.rand(1...100)
+      create_teacher
     else
       puts 'Invalid option'
     end
