@@ -13,8 +13,6 @@ class App
     @students = []
     @teachers = []
     @books = []
-    @index_s = 0
-    @index_t = 0
   end
 
   def create_people(option)
@@ -122,10 +120,8 @@ class App
     case option
     when 1
       select_person_rentals('student', @students)
-      @index_s = gets.chomp.to_i
     when 2
       select_person_rentals('teacher', @teachers)
-      @index_t = gets.chomp.to_i
     end
   end
 
@@ -136,14 +132,15 @@ class App
     puts 'How is creating the rental? student(1) or teacher(2)'
     rental_checker = gets.chomp.to_i
     rental_check(rental_checker)
+    index = gets.chomp.to_i
     print 'Date format [year/month/day] '
     date = gets.chomp
 
     case rental_checker
     when 1
-      Rental.new(date, @books[book_index], @students[@index_s])
+      Rental.new(date, @books[book_index], @students[index])
     when 2
-      Rental.new(date, @books[book_index], @teachers[@index_t])
+      Rental.new(date, @books[book_index], @teachers[index])
     else
       puts 'Invalid option'
     end
