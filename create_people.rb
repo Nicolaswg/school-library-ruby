@@ -2,7 +2,6 @@ require_relative './student'
 require_relative './teacher'
 
 class Create
-
 	def create_student
 		id = Random.rand(1...100)
 		print 'Age: '

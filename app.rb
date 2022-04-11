@@ -4,7 +4,7 @@ require_relative './rental'
 require_relative './book'
 require_relative './menu_template'
 require_relative './create_people'
-require_relative './people_list_menu'
+require_relative './listing'
 
 
 class App
@@ -13,6 +13,7 @@ class App
     @teachers = []
     @books = []
 		@create = Create.new
+    @listing = Listing.new
   end
 
   def create_people
@@ -39,19 +40,16 @@ class App
     puts 'Book created successfully'
   end
 
-  def rental_id_menu(option)
+  def rental_id_menu
+    puts 'List student rentals (1) or a teacher rentals (2) [Input the number]:'
+    option = gets.chomp
+
     case option
     when '1'
-      loop_rental(@students)
+      @listing.loop_rental(@students)
     when '2'
-      loop_rental(@teachers)
+      @listing.loop_rental(@teachers)
     end
-  end
-
-  def rental_by_id
-    puts 'List student rentals (1) or a teacher rentals (2) [Input the number]:'
-    people_option = gets.chomp
-    rental_id_menu(people_option)
   end
 
   def list_option(option)
@@ -60,12 +58,12 @@ class App
       if @books.empty?
         puts 'No book added'
       else
-        list_books
+        @listing.list_books(@books)
       end
     when '2'
-      people_list_menu(@students, @teachers)
+      @listing.people_list_menu(@students, @teachers)
     when '6'
-      rental_by_id
+      rental_id_menu
     end
   end
 
@@ -107,7 +105,7 @@ class App
 
   def rental_menu
     puts "Select a book by it's starting number of the list"
-    list_books
+    @listing.list_books(@books)
     book_index = gets.chomp.to_i
     puts 'How is creating the rental? student(1) or teacher(2)'
     rental_checker = gets.chomp.to_i
