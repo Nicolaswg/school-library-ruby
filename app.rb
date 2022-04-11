@@ -3,8 +3,7 @@ require_relative './teacher'
 require_relative './rental'
 require_relative './book'
 require_relative './menu_template'
-require_relative './create_student'
-require_relative './create_teacher'
+require_relative './create_people'
 require_relative './people_list_menu'
 
 
@@ -13,14 +12,15 @@ class App
     @students = []
     @teachers = []
     @books = []
+		@create = Create.new
   end
 
   def create_people(option)
     case option
     when '1'
-      create_student
+			@students << @create.create_student
     when '2'
-      create_teacher
+      @teachers << @create.create_teacher
     else
       puts 'Invalid option'
     end
