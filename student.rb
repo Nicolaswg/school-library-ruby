@@ -1,3 +1,4 @@
+require 'json'
 require_relative './person'
 
 class Student < Person
@@ -15,5 +16,13 @@ class Student < Person
   def classroom=(classroom)
     @classroom = classroom
     classroom.students.push(self) unless classroom.students.include?(self)
+  end
+
+  # Serialize Foo object with its class name and arguments
+  def to_json(*args)
+    {
+      JSON.create_id  => self.class.name,
+      'arguments'             => [ @id, @age, @name, @parent_permission, @classroom ]
+    }.to_json(*args)
   end
 end

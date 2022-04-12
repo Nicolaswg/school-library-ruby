@@ -31,4 +31,8 @@ class Person < Nameable
   end
 
   private :of_age?
+
+  def self.json_create(object)
+    new(*object['arguments'])
+  end
 end
