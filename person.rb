@@ -3,7 +3,6 @@ require_relative './rental'
 require_relative './json_handler'
 
 class Person < Nameable
-  include JsonHandler
   attr_reader :id
   attr_accessor :name, :age, :rentals
 

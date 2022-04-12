@@ -2,11 +2,13 @@ require_relative './rental'
 require_relative './create_instance'
 require_relative './listing'
 require_relative './json_handler'
+require_relative './json_loader'
 
-class App
-  include JsonHandler
+class App < JsonHandler
+  include JsonLoader
+  
   def initialize
-    @students = []
+    @students = load_json('students.json')
     @teachers = []
     @books = []
     @create = Create.new

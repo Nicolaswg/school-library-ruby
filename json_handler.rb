@@ -1,6 +1,6 @@
 require 'json'
 
-module JsonHandler
+class JsonHandler
   def write_json(path, arr)
     opts = {
       array_nl: "\n",

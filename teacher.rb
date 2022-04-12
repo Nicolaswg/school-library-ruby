@@ -7,6 +7,10 @@ class Teacher < Person
     @args = [@id, @age, @specialization, @name]
   end
 
+  def self.json_create(object)
+    new(*object['arguments'])
+  end
+
   def can_use_services?
     true
   end

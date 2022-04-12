@@ -14,6 +14,11 @@ class Student < Person
     "¯\(ツ)/¯"
   end
 
+  def self.json_create(object)
+    id, age, classroom, name, parent_permission = *object['arguments']
+    new(id, age, classroom, name, parent_permission: parent_permission)
+  end
+
   def classroom=(classroom)
     @classroom = classroom
     classroom.students.push(self) unless classroom.students.include?(self)
