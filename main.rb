@@ -2,9 +2,7 @@ require_relative './app'
 require_relative './menu_template'
 
 def main
-  unless Dir.exist?('rentals')
-    Dir.mkdir('rentals')
-  end 
+  Dir.mkdir('rentals') unless Dir.exist?('rentals')
   app = App.new
   option = nil
   while option != '7'

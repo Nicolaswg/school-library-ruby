@@ -3,9 +3,8 @@ require_relative './create_instance'
 require_relative './listing'
 require_relative './json_handler'
 
-
 class App
-	include JsonHandler
+  include JsonHandler
   def initialize
     @students = []
     @teachers = []
@@ -56,14 +55,14 @@ class App
 
     case rental_checker
     when 1
-			path = "rentals/#{@students[index].id}.json"
+      path = "rentals/#{@students[index].id}.json"
       Rental.new(date, @books[book_index], @students[index])
-			write_json(path, @students[index].rentals)
+      write_json(path, @students[index].rentals)
     when 2
-			path = "rentals/#{@teachers[index].id}.json"
+      path = "rentals/#{@teachers[index].id}.json"
       Rental.new(date, @books[book_index], @teachers[index])
-			write_json(path, @teachers[index].rentals)
-		else
+      write_json(path, @teachers[index].rentals)
+    else
       puts 'Invalid option'
     end
     puts 'Rental created succesfully'
