@@ -12,6 +12,15 @@ class App
     @books = load_json('books.json')
     @create = Create.new
     @listing = Listing.new
+    load_rentals(@students)
+    load_rentals(@teachers)
+  end
+
+  def load_rentals(arr)
+    arr.each do |person|
+      path = "rentals/#{person.class.name}/#{person.id}.json"
+      person.rentals = load_json(path)
+    end
   end
 
   def create_people
@@ -56,11 +65,11 @@ class App
 
     case rental_checker
     when 1
-      path = "rentals/#{@students[index].id}.json"
+      path = "rentals/Student/#{@students[index].id}.json"
       Rental.new(date, @books[book_index], @students[index])
       write_json(path, @students[index].rentals)
     when 2
-      path = "rentals/#{@teachers[index].id}.json"
+      path = "rentals/Teacher/#{@teachers[index].id}.json"
       Rental.new(date, @books[book_index], @teachers[index])
       write_json(path, @teachers[index].rentals)
     else

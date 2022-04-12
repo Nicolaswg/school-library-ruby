@@ -1,8 +1,12 @@
+require 'fileutils'
 require_relative './app'
 require_relative './menu_template'
 
 def main
-  Dir.mkdir('rentals') unless Dir.exist?('rentals')
+  unless Dir.exists?('rentals')
+    FileUtils.mkdir_p('rentals/Student')
+    FileUtils.mkdir_p('rentals/Teacher')
+  end
   app = App.new
   option = nil
   while option != '7'
