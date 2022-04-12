@@ -8,17 +8,11 @@ class Book
   def initialize(title, author)
     @title = title
     @author = author
+    @args = [@title, @author]
     @rentals = []
   end
 
   def create_rental(date, person)
     Rental.new(date, self, person)
-  end
-
-	def to_json(*args)
-    {
-      JSON.create_id  => self.class.name,
-      'arguments'             => [ @title, @author ]
-    }.to_json(*args)
   end
 end

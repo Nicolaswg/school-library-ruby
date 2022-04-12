@@ -7,6 +7,7 @@ class Student < Person
   def initialize(id, age, classroom, name = 'Unknown', parent_permission: true)
     super(id, age, name, parent_permission: parent_permission)
     @classroom = classroom
+    @args = [@id, @age, @classroom, @name, @parent_permission ]
   end
 
   def play_hooky
@@ -16,12 +17,5 @@ class Student < Person
   def classroom=(classroom)
     @classroom = classroom
     classroom.students.push(self) unless classroom.students.include?(self)
-  end
-
-  def to_json(*args)
-    {
-      JSON.create_id  => self.class.name,
-      'arguments'             => [ @id, @age, @name, @parent_permission, @classroom ]
-    }.to_json(*args)
   end
 end
