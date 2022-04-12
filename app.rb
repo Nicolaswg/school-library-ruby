@@ -2,23 +2,22 @@ require_relative './rental'
 require_relative './create_instance'
 require_relative './listing'
 
-
 class App
   def initialize
     @students = []
     @teachers = []
     @books = []
-		@create = Create.new
+    @create = Create.new
     @listing = Listing.new
   end
 
   def create_people
-		puts 'Do you want to create a student (1) or a teacher (2) [Input the number]:'
+    puts 'Do you want to create a student (1) or a teacher (2) [Input the number]:'
     option = gets.chomp
 
     case option
     when '1'
-			@students << @create.create_student
+      @students << @create.create_student
     when '2'
       @teachers << @create.create_teacher
     else
@@ -44,13 +43,12 @@ class App
     book_index = gets.chomp.to_i
     puts 'How is creating the rental?'
     rental_checker = @listing.people_list_menu(@students, @teachers)
-		if rental_checker == nil
-			return nil
-		end
+    return nil if rental_checker.nil?
+
     index = gets.chomp.to_i
     print 'Date format [year/month/day] '
     date = gets.chomp
-		
+
     case rental_checker
     when 1
       Rental.new(date, @books[book_index], @students[index])
