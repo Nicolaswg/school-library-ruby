@@ -1,6 +1,6 @@
 require_relative './nameable'
 require_relative './rental'
-require_relative './json_handler'
+
 
 class Person < Nameable
   attr_reader :id

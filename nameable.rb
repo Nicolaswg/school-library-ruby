@@ -1,6 +1,6 @@
-require_relative './json_handler'
+require_relative './json_interface'
  
-class Nameable < JsonHandler
+class Nameable < JsonInterface
   def initialize
     'init'
   end

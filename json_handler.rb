@@ -1,6 +1,10 @@
 require 'json'
+require_relative './student'
+require_relative './teacher'
+require_relative './book'
+require_relative './rental'
 
-class JsonHandler
+module JsonHandler
   def write_json(path, arr)
     opts = {
       array_nl: "\n",
@@ -15,14 +19,10 @@ class JsonHandler
     end
   end
 
-  def self.json_create(object)
-    new(*object['arguments'])
-  end
-
-  def to_json(*args)
-    {
-      JSON.create_id => self.class.name,
-      'arguments' => @args
-    }.to_json(*args)
+	def load_json(path)
+		return [] unless File.exist?(path)
+		read_path = File.read(path)
+		json = JSON.parse(read_path, create_additions: true)
+		json
   end
 end

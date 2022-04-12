@@ -1,6 +1,6 @@
-require_relative './json_handler'
+require_relative './json_interface'
 
-class Rental < JsonHandler
+class Rental < JsonInterface
   attr_accessor :date, :book, :person
 
   def initialize(date, book, person)
