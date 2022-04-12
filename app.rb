@@ -9,8 +9,8 @@ class App < JsonHandler
   
   def initialize
     @students = load_json('students.json')
-    @teachers = []
-    @books = []
+    @teachers = load_json('teachers.json')
+    @books = load_json('books.json')
     @create = Create.new
     @listing = Listing.new
   end
@@ -91,6 +91,7 @@ class App < JsonHandler
       create_people
     when '4'
       @books << @create.create_book
+			write_json('books.json', @books)
     when '5'
       rental_menu
     end

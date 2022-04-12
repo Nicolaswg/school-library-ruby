@@ -1,12 +1,14 @@
 require 'json'
 require_relative './student'
+require_relative './teacher'
+require_relative './book'
+require_relative './rental'
 
 module JsonLoader
   def load_json(path)
-    student = Teacher.new(45, 56, 'Marco', 'nsees')
-    json = JSON.generate(student)
-    puts json
-    new_student = JSON.parse(json, create_additions: true)
-    puts new_student.name
+		return [] unless File.exist?(path)
+		read_path = File.read(path)
+		json = JSON.parse(read_path, create_additions: true)
+		json
   end
 end
