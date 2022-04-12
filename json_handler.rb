@@ -19,10 +19,10 @@ module JsonHandler
     end
   end
 
-	def load_json(path)
-		return [] unless File.exist?(path)
-		read_path = File.read(path)
-		json = JSON.parse(read_path, create_additions: true)
-		json
+  def load_json(path)
+    return [] unless File.exist?(path)
+
+    read_path = File.read(path)
+    JSON.parse(read_path, create_additions: true)
   end
 end

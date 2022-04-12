@@ -1,5 +1,5 @@
 class JsonInterface
-	def self.json_create(object)
+  def self.json_create(object)
     new(*object['arguments'])
   end
 

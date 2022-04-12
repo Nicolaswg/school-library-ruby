@@ -3,7 +3,7 @@ require_relative './app'
 require_relative './menu_template'
 
 def main
-  unless Dir.exists?('rentals')
+  unless Dir.exist?('rentals')
     FileUtils.mkdir_p('rentals/Student')
     FileUtils.mkdir_p('rentals/Teacher')
   end

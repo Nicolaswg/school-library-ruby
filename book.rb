@@ -5,6 +5,7 @@ class Book < JsonInterface
   attr_accessor :title, :author, :rentals
 
   def initialize(title, author)
+    super()
     @title = title
     @author = author
     @args = [@title, @author]
