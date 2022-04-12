@@ -1,14 +1,26 @@
 require_relative './rental'
 require_relative './create_instance'
 require_relative './listing'
+require_relative './json_handler'
 
 class App
+  include JsonHandler
+
   def initialize
-    @students = []
-    @teachers = []
-    @books = []
+    @students = load_json('students.json')
+    @teachers = load_json('teachers.json')
+    @books = load_json('books.json')
     @create = Create.new
     @listing = Listing.new
+    load_rentals(@students)
+    load_rentals(@teachers)
+  end
+
+  def load_rentals(arr)
+    arr.each do |person|
+      path = "rentals/#{person.class.name}/#{person.id}.json"
+      person.rentals = load_json(path)
+    end
   end
 
   def create_people
@@ -18,8 +30,10 @@ class App
     case option
     when '1'
       @students << @create.create_student
+      write_json('students.json', @students)
     when '2'
       @teachers << @create.create_teacher
+      write_json('teachers.json', @teachers)
     else
       puts 'Invalid option'
     end
@@ -37,6 +51,12 @@ class App
     end
   end
 
+  def create_rental(arr, index, book_index, date)
+    path = "rentals/#{arr[index].class.name}/#{arr[index].id}.json"
+    Rental.new(date, @books[book_index], arr[index])
+    write_json(path, arr[index].rentals)
+  end
+
   def rental_menu
     puts "Select a book by it's starting number of the list"
     @listing.list_books(@books)
@@ -51,9 +71,9 @@ class App
 
     case rental_checker
     when 1
-      Rental.new(date, @books[book_index], @students[index])
+      create_rental(@students, index, book_index, date)
     when 2
-      Rental.new(date, @books[book_index], @teachers[index])
+      create_rental(@teachers, index, book_index, date)
     else
       puts 'Invalid option'
     end
@@ -81,12 +101,13 @@ class App
       create_people
     when '4'
       @books << @create.create_book
+      write_json('books.json', @books)
     when '5'
       rental_menu
     end
   end
 
-  private :create_option, :list_option, :create_people
+  private :create_option, :list_option, :create_people, :create_rental
 
   def menu_options(option)
     case option

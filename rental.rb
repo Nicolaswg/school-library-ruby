@@ -1,7 +1,10 @@
-class Rental
+require_relative './json_interface'
+
+class Rental < JsonInterface
   attr_accessor :date, :book, :person
 
   def initialize(date, book, person)
+    super()
     @date = date
 
     @book = book
@@ -9,5 +12,7 @@ class Rental
 
     @person = person
     person.rentals << self
+
+    @args = [@date, @book, @person]
   end
 end

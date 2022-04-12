@@ -1,9 +1,14 @@
 require_relative './person'
 
 class Teacher < Person
-  def initialize(id, age, specialization, name = 'Unknown', parent_permission: true)
-    super(id, age, name, parent_permission: parent_permission)
+  def initialize(id, age, specialization, name = 'Unknown')
+    super(id, age, name, parent_permission: true)
     @specialization = specialization
+    @args = [@id, @age, @specialization, @name]
+  end
+
+  def self.json_create(object)
+    new(*object['arguments'])
   end
 
   def can_use_services?

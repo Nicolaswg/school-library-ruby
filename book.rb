@@ -1,11 +1,14 @@
 require_relative './rental'
+require_relative './json_interface'
 
-class Book
+class Book < JsonInterface
   attr_accessor :title, :author, :rentals
 
   def initialize(title, author)
+    super()
     @title = title
     @author = author
+    @args = [@title, @author]
     @rentals = []
   end
 
