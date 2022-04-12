@@ -56,10 +56,14 @@ class App
 
     case rental_checker
     when 1
+			path = "rentals/#{@students[index].id}.json"
       Rental.new(date, @books[book_index], @students[index])
+			write_json(path, @students[index].rentals)
     when 2
+			path = "rentals/#{@teachers[index].id}.json"
       Rental.new(date, @books[book_index], @teachers[index])
-    else
+			write_json(path, @teachers[index].rentals)
+		else
       puts 'Invalid option'
     end
     puts 'Rental created succesfully'
