@@ -1,16 +1,17 @@
 require_relative './rental'
 require_relative './create_instance'
 require_relative './listing'
-require_relative './json_generator'
+require_relative './json_handler'
+
 
 class App
+	include JsonHandler
   def initialize
     @students = []
     @teachers = []
     @books = []
     @create = Create.new
     @listing = Listing.new
-    @json = JsonGenerator.new 
   end
 
   def create_people
@@ -20,10 +21,10 @@ class App
     case option
     when '1'
       @students << @create.create_student
-      @json.write_json('students.json', @students)
+      write_json('students.json', @students)
     when '2'
       @teachers << @create.create_teacher
-      @json.write_json('teachers.json', @teachers)
+      write_json('teachers.json', @teachers)
     else
       puts 'Invalid option'
     end

@@ -1,6 +1,6 @@
 require 'json'
 
-class JsonGenerator
+module JsonHandler
   def write_json(path, arr)
     opts = {
       array_nl: "\n",
@@ -14,4 +14,9 @@ class JsonGenerator
       file.write(json)
     end
   end
+
+	def self.json_create(object)
+    new(*object['arguments'])
+  end
+	
 end
