@@ -84,7 +84,7 @@ describe Person do
   end
 
   context 'Creating Rentals' do 
-    it 'Shoould add one rental' do 
+    it 'Should add one rental' do 
       marco = create_marco
       book = double('book')
 
