@@ -28,4 +28,16 @@ describe Student do
 			expect(@student.classroom).to eql classroom
 		end
 	end
+
+	context 'Creating Rentals' do 
+    it 'Should add one rental' do 
+      book = double('book')
+
+      allow(book).to receive(:rentals) {[]}
+
+      @student.create_rental('2015/05/05', book)
+
+      expect(@student.rentals.length).to eq 1
+    end
+  end
 end
